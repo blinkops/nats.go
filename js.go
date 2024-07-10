@@ -1816,7 +1816,7 @@ func (js *js) subscribe(subj, queue string, cb MsgHandler, ch chan *Msg, isSync,
 		} else {
 			// Since the library created the JS consumer, it will delete it on Unsubscribe()/Drain()
 			sub.mu.Lock()
-			sub.jsi.dc = true
+			// sub.jsi.dc = true - Disable deletion of JS consumers
 			sub.jsi.pending = info.NumPending + info.Delivered.Consumer
 			// If this is an ephemeral, we did not have a consumer name, we get it from the info
 			// after the AddConsumer returns.
